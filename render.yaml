@@ -1,0 +1,24 @@
+# Primary live host for Beast Royale Clash.
+# Dashboard: New → Blueprint → this repo.
+# This is a Node web service (SPA + Express + WebSocket), not a static site.
+services:
+  - type: web
+    name: beast-royale-clash
+    runtime: node
+    plan: free
+    healthCheckPath: /api/health
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: GAME_JWT_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: ./data
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"

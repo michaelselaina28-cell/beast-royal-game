@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build:web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Optional static SPA only. The live game belongs on Render (see render.yaml).
+# Netlify cannot host the Express + WebSocket match server.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
